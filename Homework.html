@@ -1,0 +1,95 @@
+<!DOCTYPE>
+<html>
+<head>
+	<title>Ваш заказ</title>
+	<meta charset="UTF-8">
+	<script type="text/javascript">
+		var node = null;
+		function List() {
+			var list = document.getElementById('list');
+		}
+
+		function resetColor() {
+            var Li = document.getElementsByTagName("li");
+            for (var i = 0; i < Li.length; i++) {
+                Li[i].setAttribute("style", "color:black");
+        	}
+        }
+
+		function selectFirstChild() {
+			List()
+			var fChild = list.firstChild;
+			fChild.setAttribute('style', 'color: brown; font-weight: bold;');
+		}
+
+		function selectLastChild() {
+			List()
+			var lChild = list.lastChild;
+			lChild.setAttribute('style', 'color: brown; font-weight: bold;');
+		}
+
+		function selectNextNode() {
+			resetColor()
+			List()
+			if (node == null) {
+                node = list.firstChild;
+                node.setAttribute("style", "font-weight: bold;");;
+                return;
+            }
+            node = node.nextSibling;
+            if (node != null) {
+                node.setAttribute("style", "font-weight: bold;");;
+            }
+		}
+
+		function selectPrevNode() {
+			resetColor()
+			List()
+			if (node == null) {
+				node = list.lastChild;
+				node.setAttribute('style', 'font-weight: bold;');
+				return;
+			}
+			node = node.previousSibling;
+			if (node != null) {
+				node.setAttribute('style', 'font-weight: bold;');
+			}
+		}
+
+		function createNewChild() {
+			resetColor()
+			List()
+			var newLi = document.createElement('li');
+			newLi.innerHTML = 'Something else';
+			list.appendChild(newLi);
+		}
+
+		function removeLastChild() {
+			resetColor()
+			List()
+			var lChild = list.lastChild;
+			list.removeChild(lChild);
+		}
+
+		function createNewChildAtStart() {
+			resetColor()
+			List()
+			var newLi = document.createElement('li');
+			newLi.innerHTML = 'Something new';
+			list.insertBefore(newLi, list.firstChild)
+		}
+	</script>
+</head>
+<body>
+	<H1>Ваш заказ:</H1>
+	<ul id=list><li>Мясо</li><li>Рыба</li><li>Чай</li><li>Шоколад</li><li>Мороженое</li></ul>
+	<br />
+	<input type="button" onclick="selectFirstChild()" style="width: 210px;" value="Выбрать первый элемент" />
+    <input type="button" onclick="selectLastChild()" style="width: 210px;" value="Выбрать последний элемент" /><br><br>
+    <input type="button" onclick="selectNextNode()" style="width: 210px;" value="Выбрать следующий элемент" />
+    <input type="button" onclick="selectPrevNode()" style="width: 210px;" value="Выбрать предыдущий элемент" /><br><br>
+    <input type="button" onclick="createNewChild()" style="width: 210px;" value="Добавить элемент" />
+    <input type="button" onclick="removeLastChild()" style="width: 210px;" value="Удалить элемент" /><br><br>
+    <input type="button" onclick="createNewChildAtStart()" style="width: 210px; margin-left: 105px;" value="Добавить  в начало" />
+</body>
+</html>
